@@ -9,7 +9,12 @@ import (
 
 func main() {
 	if err := httpservertest.Run(newConfig()); err != nil {
-		log.Fatal(err)
+		switch err.(type) {
+		case *httpservertest.FailedErr:
+			log.Fatal(err)
+		default:
+			log.Fatal("[error] " + err.Error())
+		}
 	}
 }
 
@@ -19,6 +24,7 @@ func newConfig() httpservertest.Config {
 	baseURL := flag.String("u", "", "endpoint URL without a path (e.g. http://yourdomain.com)")
 	testCasesFilePath := flag.String("t", "", "test cases file path")
 	parametersFilePath := flag.String("p", "", "parameters file path (optional)")
+	insecureSkipVerify := flag.Bool("insecure-skip-verify", false, "controls whether a client verifies the server's certificate chain and host name")
 
 	flag.Parse()
 
@@ -26,5 +32,6 @@ func newConfig() httpservertest.Config {
 		BaseURL:            *baseURL,
 		TestCasesFilePath:  *testCasesFilePath,
 		ParametersFilePath: *parametersFilePath,
+		InsecureSkipVerify: *insecureSkipVerify,
 	}
 }

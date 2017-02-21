@@ -1,6 +1,9 @@
 package httpservertest
 
-import "net/http"
+import (
+	"crypto/tls"
+	"net/http"
+)
 
 // httpClient is an HTTP client.
 type httpClient interface {
@@ -8,8 +11,13 @@ type httpClient interface {
 }
 
 // newHTTPClient creates an HTTP client and returns it.
-func newHTTPClient() httpClient {
+func newHTTPClient(insecureSkipVerify bool) httpClient {
 	return &http.Client{
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: insecureSkipVerify,
+			},
+		},
 		CheckRedirect: doNotFollowRedirect,
 	}
 }

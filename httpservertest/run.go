@@ -12,7 +12,7 @@ func Run(conf Config) error {
 		return err
 	}
 
-	client := newHTTPClient()
+	client := newHTTPClient(conf.InsecureSkipVerify)
 
 	for _, testCase := range testCases {
 		if err := execute(conf.BaseURL, testCase, client); err != nil {
