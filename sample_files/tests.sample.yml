@@ -1,0 +1,14 @@
+---
+- Name: foo
+  Request:
+    Method: GET
+    Path: /
+  ExpectedResponse:
+    StatusCode: 200
+
+- Name: bar
+  Request:
+    Method: GET
+    Path: {{.Params.RobotsPath}}
+  ExpectedResponse:
+    StatusCode: 200
