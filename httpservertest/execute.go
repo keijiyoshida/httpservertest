@@ -10,7 +10,7 @@ import (
 func execute(baseURL string, testCase TestCase, client httpClient) error {
 	log.Printf("testCase: %s\n", testCase.Name)
 
-	startTime := time.Now()
+	requestTime := time.Now()
 
 	req, err := http.NewRequest(testCase.Request.Method, baseURL+testCase.Request.Path, nil)
 	if err != nil {
@@ -22,9 +22,11 @@ func execute(baseURL string, testCase TestCase, client httpClient) error {
 		return err
 	}
 
-	elapsed := time.Now().Sub(startTime)
+	elapsed := time.Now().Sub(requestTime)
 
-	if err := check(testCase, res, elapsed); err != nil {
+	defer res.Body.Close()
+
+	if err := check(testCase, res, requestTime, elapsed); err != nil {
 		return err
 	}
 

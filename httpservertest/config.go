@@ -8,4 +8,7 @@ type Config struct {
 	TestCasesFilePath string
 	// ParametersFilePath is the parameters file path. This field is optional.
 	ParametersFilePath string
+	// InsecureSkipVerify controls whether a client verifies
+	// the server's certificate chain and host name.
+	InsecureSkipVerify bool
 }
