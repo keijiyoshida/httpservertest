@@ -1,14 +1,60 @@
 ---
-- Name: foo
+- Name: test /
   Request:
     Method: GET
     Path: /
   ExpectedResponse:
     StatusCode: 200
+    ContentType: image/gif
+    ContentLength: 43
+    Close: false
+    Cookies:
+      - Name: cookie_name
+        Value: cookie_value
+        Path: /
+        Domain: .foo.com
+        Secure: true
+        Expires:
+          AfterOrEqualToRequestTimePlus: 31536000
+  ExpectedFileOutputs:
+    - Path: /var/log/nginx/access.log
+      Pattern: ^time:.*\thost:.*\tforwardedfor:.*\tuser:.*\treq:GET\s/\sHTTP/1\.1\tmethod:GET\turi:/\tprotocol:HTTP/1\.1\tstatus:200\tsize:.*\treqsize:.*\treferer:.*\tua:.*\tvhost:.*\treqtime:.*$
+    - Path: /var/log/nginx/app.log
+      Pattern: ^time:.*\tuser:.*$
 
-- Name: bar
+- Name: test /robots.txt
   Request:
     Method: GET
     Path: {{.Params.RobotsPath}}
   ExpectedResponse:
     StatusCode: 200
+    ContentType: text/plain; charset=utf-8
+    ContentLength: 26
+    Close: false
+    Body: |
+      User-agent: *
+      Disallow: /
+  ExpectedFileOutputs:
+    - Path: /var/log/nginx/access.log
+      Pattern: ^time:.*\thost:.*\tforwardedfor:.*\tuser:.*\treq:GET\s{{.Params.RobotsPath}}\sHTTP/1\.1\tmethod:GET\turi:{{.Params.RobotsPath}}\tprotocol:HTTP/1\.1\tstatus:200\tsize:.*\treqsize:.*\treferer:.*\tua:.*\tvhost:.*\treqtime:.*$
+
+- Name: test /redirect
+  Request:
+    Method: GET
+    Path: /redirect
+  ExpectedResponse:
+    StatusCode: 301
+    ContentType: text/html
+    ContentLength: 178
+    Close: false
+    Location: http://bar.com/
+
+- Name: test an undefined path
+  Request:
+    Method: GET
+    Path: /undefined/path
+  ExpectedResponse:
+    StatusCode: 404
+    ContentType: text/html; charset=utf-8
+    ContentLength: 162
+    Close: false
