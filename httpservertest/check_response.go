@@ -2,13 +2,12 @@ package httpservertest
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
 
 // checkResponse checks if the response is valid or not.
-func checkResponse(expectedRes *ExpectedResponse, res *http.Response, requestTime time.Time, elapsed time.Duration) error {
+func checkResponse(expectedRes *ExpectedResponse, res *http.Response, resBody string, requestTime time.Time, elapsed time.Duration) error {
 	if expectedRes.StatusCode != nil {
 		if res.StatusCode != *expectedRes.StatusCode {
 			return newFailedErr(
@@ -132,14 +131,9 @@ func checkResponse(expectedRes *ExpectedResponse, res *http.Response, requestTim
 	}
 
 	if expectedRes.Body != nil {
-		b, err := ioutil.ReadAll(res.Body)
-		if err != nil {
-			return err
-		}
-
-		if body := string(b); body != *expectedRes.Body {
+		if resBody != *expectedRes.Body {
 			return newFailedErr(
-				fmt.Sprintf("Body => %s, expected %s", body, *expectedRes.Body),
+				fmt.Sprintf("Body => %s, expected %s", resBody, *expectedRes.Body),
 				elapsed,
 			)
 		}
