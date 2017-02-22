@@ -11,4 +11,6 @@ type Config struct {
 	// InsecureSkipVerify controls whether a client verifies
 	// the server's certificate chain and host name.
 	InsecureSkipVerify bool
+	// Version controls whether showing the version of this package or not.
+	Version bool
 }
