@@ -25,6 +25,7 @@ func newConfig() httpservertest.Config {
 	testCasesFilePath := flag.String("t", "", "test cases file path")
 	parametersFilePath := flag.String("p", "", "parameters file path (optional)")
 	insecureSkipVerify := flag.Bool("insecure-skip-verify", false, "controls whether a client verifies the server's certificate chain and host name")
+	version := flag.Bool("v", false, "show the version of HTTPServerTest")
 
 	flag.Parse()
 
@@ -33,5 +34,6 @@ func newConfig() httpservertest.Config {
 		TestCasesFilePath:  *testCasesFilePath,
 		ParametersFilePath: *parametersFilePath,
 		InsecureSkipVerify: *insecureSkipVerify,
+		Version:            *version,
 	}
 }

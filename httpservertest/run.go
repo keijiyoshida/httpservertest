@@ -1,7 +1,14 @@
 package httpservertest
 
+import "fmt"
+
 // Run runs HTTP server testing.
 func Run(conf Config) error {
+	if conf.Version {
+		fmt.Printf("HTTPServerTest %s\n", version)
+		return nil
+	}
+
 	params, err := newParameters(conf.ParametersFilePath)
 	if err != nil {
 		return err

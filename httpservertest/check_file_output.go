@@ -7,7 +7,7 @@ import (
 )
 
 //  Default number of lines which tail reads from the bottom of the file.
-var defaultNumLines = 1
+const defaultNumLines = 1
 
 // checkFileOutput checks if the file outputs are valid or not.
 func checkFileOutput(expectedFileOutput ExpectedFileOutput, elapsed time.Duration) error {
