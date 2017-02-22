@@ -1,6 +1,7 @@
 package httpservertest
 
 import (
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -10,27 +11,43 @@ import (
 func execute(baseURL string, testCase TestCase, client httpClient) error {
 	log.Printf("testCase: %s\n", testCase.Name)
 
-	requestTime := time.Now()
-
 	req, err := http.NewRequest(testCase.Request.Method, baseURL+testCase.Request.Path, nil)
 	if err != nil {
 		return err
 	}
+
+	requestTime := time.Now()
 
 	res, err := client.Do(req)
 	if err != nil {
 		return err
 	}
 
-	elapsed := time.Now().Sub(requestTime)
+	responseTime := time.Now()
+	elapsed := responseTime.Sub(requestTime)
 
-	defer res.Body.Close()
-
-	if err := check(testCase, res, requestTime, elapsed); err != nil {
+	resBody, err := readResponseBody(res)
+	if err != nil {
 		return err
 	}
 
-	log.Printf("result: ok\telapsed: %s\n", elapsed)
+	if err := check(testCase, res, resBody, requestTime, elapsed); err != nil {
+		return err
+	}
+
+	log.Printf("result: ok\trequestTime: %s\tresponseTime: %s\telapsed: %s\n", requestTime, responseTime, elapsed)
 
 	return nil
+}
+
+// readResponseBody reads the response body.
+func readResponseBody(res *http.Response) (string, error) {
+	defer res.Body.Close()
+
+	b, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return "", err
+	}
+
+	return string(b), nil
 }

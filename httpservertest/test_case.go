@@ -8,4 +8,6 @@ type TestCase struct {
 	Request Request `yaml:"Request"`
 	// ExpectedResponse is an expected response of the test case.
 	ExpectedResponse *ExpectedResponse `yaml:"ExpectedResponse"`
+	// ExpectedFileOutputs is expected file outputs of the test case.
+	ExpectedFileOutputs *[]ExpectedFileOutput `yaml:"ExpectedFileOutputs"`
 }
