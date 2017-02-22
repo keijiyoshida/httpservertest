@@ -23,3 +23,9 @@ A test cases file is a YAML file which describes test cases. [sample_files/tests
 ## Parameters File
 
 A parameters file is a YAML file which describes parameters which are injected into a test cases file. Parameters on a parameters file can be accessed by writing `{{.Params.Xxxx}}` on a test cases file. [sample_files/params.sample.yml](https://github.com/keijiyoshida/httpservertest/blob/master/sample_files/params.sample.yml) is a sample of a parameters file.
+
+## Cross Compile
+
+```shell
+$ ./cross_compile.sh "Version of HTTPServerTest like 0.0.1"
+```
