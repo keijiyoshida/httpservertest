@@ -2,8 +2,8 @@
 
 [![GitHub release](https://img.shields.io/github/release/keijiyoshida/httpservertest.svg?style=plastic)](https://github.com/keijiyoshida/httpservertest/releases)
 [![wercker status](https://app.wercker.com/status/b1dbcf82a529081e8f1e79c89c1d7563/s/master "wercker status")](https://app.wercker.com/project/byKey/b1dbcf82a529081e8f1e79c89c1d7563)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=plastic)][https://github.com/keijiyoshida/httpservertest/blob/master/LICENSE]
-[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=plastic)][https://godoc.org/github.com/keijiyoshida/httpservertest/httpservertest]
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=plastic)](https://github.com/keijiyoshida/httpservertest/blob/master/LICENSE)
+[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=plastic)](https://godoc.org/github.com/keijiyoshida/httpservertest/httpservertest)
 
 Testing tool for contents of an HTTP response and log file which an HTTP server outputs
 
