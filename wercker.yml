@@ -32,13 +32,6 @@ build:
         code: |
           go version
 
-    # Get the dependencies
-    - script:
-        name: go get
-        code: |
-          go get ./...
-          go get gopkg.in/check.v1
-
     # Build the project
     - script:
         name: go build
@@ -49,4 +42,4 @@ build:
     - script:
         name: go test
         code: |
-          go test ./...
+          make test
