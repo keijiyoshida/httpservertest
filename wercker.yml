@@ -37,6 +37,7 @@ build:
         name: go get
         code: |
           go get ./...
+          go get gopkg.in/check.v1
 
     # Build the project
     - script:
