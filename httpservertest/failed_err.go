@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// failedErr represents a test failed error.
+// FailedErr represents a test failed error.
 type FailedErr struct {
 	reason  string
 	elapsed time.Duration
