@@ -1,8 +1,9 @@
 # HTTPServerTest
 
 [![wercker status](https://app.wercker.com/status/b1dbcf82a529081e8f1e79c89c1d7563/s/master "wercker status")](https://app.wercker.com/project/byKey/b1dbcf82a529081e8f1e79c89c1d7563)
-[![GitHub release](https://img.shields.io/github/release/keijiyoshida/httpservertest.svg?style=flat)](https://github.com/keijiyoshida/httpservertest/releases)
+[![Coverage Status](https://coveralls.io/repos/github/keijiyoshida/httpservertest/badge.svg)](https://coveralls.io/github/keijiyoshida/httpservertest)
 [![Go Report Card](https://goreportcard.com/badge/github.com/keijiyoshida/httpservertest)](https://goreportcard.com/report/github.com/keijiyoshida/httpservertest)
+[![GitHub release](https://img.shields.io/github/release/keijiyoshida/httpservertest.svg?style=flat)](https://github.com/keijiyoshida/httpservertest/releases)
 [![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat)](https://godoc.org/github.com/keijiyoshida/httpservertest/httpservertest)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/keijiyoshida/httpservertest/blob/master/LICENSE)
 
