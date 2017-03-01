@@ -1,3 +1,3 @@
 package httpservertest
 
-const version = "0.0.2rc"
+const version = "0.0.2"
