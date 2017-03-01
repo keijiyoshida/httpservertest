@@ -130,6 +130,17 @@ func checkResponse(expectedRes *ExpectedResponse, res *http.Response, resBody st
 		}
 	}
 
+	if expectedRes.Header != nil {
+		for _, expectedHeaderField := range *expectedRes.Header {
+			if got := res.Header.Get(expectedHeaderField.Name); got != expectedHeaderField.Value {
+				return newFailedErr(
+					fmt.Sprintf("Header.Get(%q) => %q, expected %q", expectedHeaderField.Name, got, expectedHeaderField.Value),
+					elapsed,
+				)
+			}
+		}
+	}
+
 	if expectedRes.Body != nil {
 		if resBody != *expectedRes.Body {
 			return newFailedErr(
