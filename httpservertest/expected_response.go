@@ -14,6 +14,8 @@ type ExpectedResponse struct {
 	Location *string `yaml:"Location"`
 	// Cookies is expected Cooikes of the response.
 	Cookies *[]Cookie `yaml:"Cookies"`
+	// Header is an expected Header of the response.
+	Header *[]HeaderField `yaml:"Header"`
 	// Body is an expected body of the response.
 	Body *string `yaml:"Body"`
 }
